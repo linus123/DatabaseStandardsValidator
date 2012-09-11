@@ -61,5 +61,41 @@ namespace DatabaseStandardsValidator.UnitTests
 
              Assert.That(isValid, Is.True);
          }
+         [Test]
+         public void IsNameValidShouldReturnTrueWhenCamelCase1()
+         {
+             var tableValidator = new TableValidator();
+
+             const string tableName = "HappyTable";
+
+             var isValid = tableValidator.IsNameValid(tableName);
+
+             Assert.That(isValid, Is.True);
+         }
+
+         [Test]
+         public void IsNameValidShouldReturnTrueWhenCamelCase2()
+         {
+             var tableValidator = new TableValidator();
+
+             const string tableName = "TradingVehiclesRegion";
+
+             var isValid = tableValidator.IsNameValid(tableName);
+
+             Assert.That(isValid, Is.True);
+         }
+
+         [Test]
+         public void IsNameValidShouldReturnFalseWhenNameContainsUnderscore()
+         {
+             var tableValidator = new TableValidator();
+
+             const string tableName = "Sad_Table";
+
+             var isValid = tableValidator.IsNameValid(tableName);
+
+             Assert.That(isValid, Is.False);
+         }
+
     }
 }
